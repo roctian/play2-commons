@@ -1,0 +1,55 @@
+@(pageCount:Int = 0,pageIndex:Int = 0,path:String)
+
+@if(pageCount > 1){
+<div class="row">
+  <div class="col-sm-6">
+  </div>
+  <div class="col-sm-6">
+    <div class="table_paginate pull-right">
+      <ul class="pagination">
+        @if(pageIndex > 0){
+        <li>
+          <a href="@(path + 0)">&laquo;</a>
+        </li>
+        <li>
+          <a href="@{path + (pageIndex - 1)}">&lsaquo;</a>
+        </li>
+        } else {
+        <li class="disabled">                  
+          <span>
+            <span aria-hidden="true">&laquo;</span>
+          </span>                   
+        </li>
+        <li class="disabled">                  
+          <span>
+            <span aria-hidden="true">&lsaquo;</span>
+          </span>                   
+        </li>
+        }
+        @for(i <- 1 to 5){
+          @if(i == (pageIndex + 1)){
+          <li class="active"><span>@i <span class="sr-only">(current)</span></span></li>
+          } else {
+          <li><a href="@{path + (i - 1)}">@i</a></li>
+          }
+        }
+        @if(pageIndex < pageCount - 1){
+        <li>
+          <a href="@{path + (pageIndex + 1)}">&rsaquo;</a>
+        </li>
+        <li>
+          <a href="@{path + (pageCount - 1)}">&raquo;</a>
+        </li>
+        } else {
+        <li class="disabled">
+          <a>&rsaquo;</a>
+        </li>
+        <li class="disabled">
+          <a>&raquo;</a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+}
