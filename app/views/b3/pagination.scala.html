@@ -26,11 +26,11 @@
           </span>                   
         </li>
         }
-        @for(i <- 1 to 5){
-          @if(i == (pageIndex + 1)){
-          <li class="active"><span>@i <span class="sr-only">(current)</span></span></li>
+        @for(index <- utils.Paginator.start(pageCount,pageIndex,5) to utils.Paginator.end(pageCount,pageIndex,5)){
+          @if(index == (pageIndex + 1)){
+          <li class="active"><span>@index <span class="sr-only">(current)</span></span></li>
           } else {
-          <li><a href="@{path + (i - 1)}">@i</a></li>
+          <li><a href="@{path + (index - 1)}">@index</a></li>
           }
         }
         @if(pageIndex < pageCount - 1){
